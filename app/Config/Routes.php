@@ -7,4 +7,4 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Auth\AuthController::index');
 
-// $routes->get('/', 'Home::index');
+$routes->get('/users', 'Users\UserController::index');
