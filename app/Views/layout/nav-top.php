@@ -110,8 +110,16 @@
               <a class="link-mask" href="notifications.html"></a>
             </div>
           </div>
-          <div class="dropdown-menu-footer p-2 text-center">
-            <a href="notifications.html">View all</a>
+          <div class="dropdown-menu-footer p-2">
+            <div class="d-flex justify-content-center">
+              <a class="btn btn-sm btn-info btn-notification text-white p-1" href="notifications.html">
+                <i class="bi bi-list-ul me-1"></i> Ver Todo
+              </a>
+              <div class="mx-1"></div>
+              <a class="btn btn-sm btn-secondary btn-notification text-white p-1" href="notifications.html">
+                <i class="bi bi-check-all me-1"></i> Marcar Como Leído
+              </a>
+            </div>
           </div>
         </div>
       </div>
