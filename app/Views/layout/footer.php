@@ -1,9 +1,20 @@
 <footer class="app-footer">
   <div class="container text-center py-3">
     <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-    <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
-        style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com"
-        target="_blank">Xiaoying Rileyaaa</a> for developers</small>
+    <small class="copyright">Diseañdo con <span class="sr-only">amor</span><i class="fas fa-heart"
+        style="color: #fb866a;"></i> por <a class="app-link" href="https://rosher.code/" target="_blank">Rogelio
+        Espinosa Reyes</a> desarrollador</small>
   </div>
 </footer>
 <!--//app-footer-->
+
+<!-- MODULOS BASICOS DE UN POS -->
+<!-- 
+  1. Productos
+  2. Categorías
+  3. Clientes
+  4. Ventas
+  5. Caja (apertura + corte)
+  6. Usuarios
+  7. Compras (con proveedores integrados)
+ -->

@@ -1,0 +1,18 @@
+#FISUCURSALID {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Ajuste visual del switch */
+.form-check-input[type="checkbox"] {
+  width: 3rem;
+  /* ancho del switch */
+  height: 1.5rem;
+  /* alto del switch */
+}
+
+.form-check-label {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}

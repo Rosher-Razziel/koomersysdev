@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RolesModel extends Model
+class SucursalModel extends Model
 {
-    protected $table            = 'TAROL';
-    protected $primaryKey       = 'FIROLID';
+    protected $table            = 'TASUCURSAL';
+    protected $primaryKey       = 'FISUCURSALID';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['FCNOMBREROL', 'FCDETALLEROL'];
+    protected $allowedFields    = ['FIMARCAID', 'FCNOMBRESUCURSAL', 'FCIMAGENSUCURSAL', 'FIESTATUS'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,10 +21,10 @@ class RolesModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $createdField  = 'FDFECHAALTA';
+    protected $updatedField  = 'FDFECHAACTUALIZACION';
     protected $deletedField  = 'deleted_at';
 
     // Validation
@@ -44,7 +44,8 @@ class RolesModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getRoles(){
+    public function getSucursales(){
         return $this->findAll();
     }
+
 }

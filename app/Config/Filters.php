@@ -34,6 +34,8 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'authGuard' => \App\Filters\AuthGuard::class, // Redirigir si no esta autenticado
+        'alreadyLoggedIn' => \App\Filters\AlreadyLoggedIn::class, // Redirigir si está autenticado
     ];
 
     /**

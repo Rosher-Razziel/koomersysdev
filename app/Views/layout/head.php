@@ -9,20 +9,22 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
   <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
   <link rel="shortcut icon" href="<?= base_url('assets/images/logos/logo-koomersys-v3.svg'); ?>">
-
   <!-- FontAwesome JS-->
   <script src="https://kit.fontawesome.com/ae5f698689.js" crossorigin="anonymous"></script>
   <!-- App CSS -->
-  <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+  <link id="theme-style" rel="stylesheet" href="<?= base_url('assets/css/portal.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/styles.css'); ?>">
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- DataTables con estilos de Bootstrap -->
   <link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+  <!-- Select2 -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
 
   <script> let base_url = "<?= base_url() ?>"; </script>
 

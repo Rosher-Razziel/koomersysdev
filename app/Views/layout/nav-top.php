@@ -1,7 +1,7 @@
 <div class="app-header-content">
   <div class="row justify-content-between align-items-center">
     <div class="col-auto">
-      <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+      <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
           <title>Menu</title>
           <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
@@ -143,7 +143,7 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="login.html">Cerrar Sesion</a></li>
+          <li><a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Cerrar Sesion</a></li>
         </ul>
       </div>
     </div>

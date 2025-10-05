@@ -59,16 +59,7 @@ class UserModel extends Model
         }
         return $data;
     }
-
-    public function findByLogin(string $login){
-        return $this->select('TAUSUARIO.*, TAROL.FCNOMBREROL')
-            ->join('TAROL','TAROL.FIROLID = TAUSUARIO.FIROLID')
-            ->groupStart()
-                ->where('FCEMAIL', $login)
-            ->groupEnd()
-            ->first();
-    }
-
+    
     public function findAllUsers(){
         return $this->select("
             TAUSUARIO.FIUSUARIOID,
@@ -85,6 +76,7 @@ class UserModel extends Model
             ->join('TAROL', 'TAROL.FIROLID = TAUSUARIO.FIROLID', 'LEFT')
             ->join('TASUCURSAL', 'TASUCURSAL.FISUCURSALID = TAUSUARIO.FISUCURSALID', 'LEFT')
             ->join('TAMARCA', 'TAMARCA.FIMARCAID = TASUCURSAL.FIMARCAID', 'LEFT')
+            ->asArray()
             ->findAll();
     }
 
@@ -110,5 +102,9 @@ class UserModel extends Model
         ->where('TAUSUARIO.FIUSUARIOID', $userId)
         ->asArray()
         ->first();
+    }
+    
+    public function updateUsuarioPorId($userId, $data){
+        return $this->update($userId, $data);
     }
 }
