@@ -7,97 +7,168 @@ use App\Models\UserModel;
 use App\Models\RolesModel;
 use App\Models\SucursalModel;
 
-class UserController extends BaseController
-{
-    public function index(){
-        $userModel = new UserModel();
+class UserController extends BaseController{
 
-        $data['title'] = 'Usuarios';
-        $data['usuarios'] = $userModel->findAllUsers();
-        return view('users/index', $data);
-    }
+	protected $userModel, $rolesModel, $sucursalModel;
+	protected $encrypter;
 
-    public function create(){
-        $rolesModel = new RolesModel();
-        $sucursalModel = new SucursalModel();
-        
-        $roles = $rolesModel->getRoles();
-        $sucursales = $sucursalModel->getSucursales();
+	public function __construct(){
+		$this->userModel = new UserModel();
+		$this->rolesModel = new RolesModel();
+		$this->sucursalModel = new SucursalModel();
+		$this->encrypter = \Config\Services::encrypter();
+		helper('text');
+	}
 
-        $data['roles'] = $roles;
-        $data['sucursales'] = $sucursales;
-        $data['title'] = 'Agregar Usuario';
-        return view('users/crear', $data);
-    }
-    
-    public function edit($encryptedId){
-        $encrypter = \Config\Services::encrypter();
+	public function index(){
+		$sucursales = $this->sucursalModel->getSucursales();
+		$roles = $this->rolesModel->getRoles();
 
-        try {
-            $userId = $encrypter->decrypt(hex2bin($encryptedId));
-            $userModel = new UserModel();
-            $rolesModel = new RolesModel();
-            $sucursalModel = new SucursalModel();
-            
-            $usuario = $userModel->getUsuarioPorId($userId);
-            $roles = $rolesModel->getRoles();
-            $sucursales = $sucursalModel->getSucursales();
+		// Encriptar los IDs de sucursales
+		foreach ($sucursales as &$sucursal) {
+			$sucursal['FISUCURSALID'] = base64_encode($this->encrypter->encrypt($sucursal['FISUCURSALID']));
+		}	
+		// Encriptar los IDs de roles
+		foreach ($roles as &$rol) {
+			$rol['FIROLID'] = base64_encode($this->encrypter->encrypt($rol['FIROLID']));
+		}
 
-            if ($usuario) {
-                $data['userEncrypt'] = $encryptedId;
-                $data['usuario'] = $usuario;
-                $data['roles'] = $roles;
-                $data['sucursales'] = $sucursales;
-            } else {
-                // Devuelve un JSON de error si no se encuentra
-                $data['error'] = [
-                    'status'  => 'error',
-                    'message' => 'Usuario no encontrado'
-                ];
-            }
-        } catch (\Exception $e) {
-            $data['error'] = [
-                    'status'  => 'error',
-                    'message' => 'Id Invalido'
-                ];
-        }
+		$data['roles'] = $roles;
+		$data['sucursales'] = $sucursales;
 
-        $data['title'] = 'Editar Usuario';
-        return view('users/edit', $data);
-    }
+		$data['title'] = 'Usuarios';
+		return view('users/index', $data);
+	}
 
-    public function cargaMasiva(){
-        $data['title'] = 'Carga Masiva Usuarios';
-        return view('users/masiveload', $data);
-    }
+	public function listarUsuarios(){
+		$usuarios = $this->userModel->findAllUsers();
 
-    public function find($encryptedId){
-        $encrypter = \Config\Services::encrypter();
+		foreach ($usuarios as &$user) {
+			$user['ID_ENCRIPTADO'] = bin2hex($this->encrypter->encrypt($user['FIUSUARIOID']));
+			unset($user['FIUSUARIOID']);
+		}
 
-        try {
-            $userId = $encrypter->decrypt(hex2bin($encryptedId));
-            $userModel = new UserModel();
-            $usuario = $userModel->getUsuarioPorId($userId);
-            if ($usuario) {
-                // Devuelve un JSON con status 200
-                return $this->response->setJSON([
-                    'status' => 'success',
-                    'userIdEncrypted' => $encryptedId,
-                    'data'   => $usuario
-                ]);
-            } else {
-                // Devuelve un JSON de error si no se encuentra
-                return $this->response->setJSON([
-                    'status'  => 'error',
-                    'message' => 'Usuario no encontrado'
-                ])->setStatusCode(404);
-            }
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message'=> 'ID inválido'
-            ])->setStatusCode(400);
-        }
-    }
+		if ($usuarios) {
+			return $this->response->setJSON([
+				'status'  => 'success',
+				'usuarios' => $usuarios
+			]);
+		} else {
+			return $this->response->setJSON([
+				'status'  => 'error',
+				'message' => 'No se encontraron usuarios'
+			]);
+		}
+	}
 
+	public function create(){
+		$roles = $this->rolesModel->getRoles();
+		$sucursales = $this->sucursalModel->getSucursales();
+
+		$data['roles'] = $roles;
+		$data['sucursales'] = $sucursales;
+		$data['title'] = 'Agregar Usuario';
+		return view('users/crear', $data);
+	}
+		
+	public function edit($encryptedId = null){
+			
+		// try {
+		// 	$userId = $this->encrypter->decrypt(hex2bin($encryptedId));
+		// 	$usuario = $this->userModel->getUsuarioPorId($userId);
+
+		// 	if ($usuario) {
+		// 		$data['usuario'] = $usuario;
+		// 	} else {
+		// 		// Devuelve un JSON de error si no se encuentra
+		// 		$data['error'] = [
+		// 			'status'  => 'error',
+		// 			'message' => 'Usuario no encontrado'
+		// 		];
+		// 	}
+		// } catch (\Exception $e) {
+		// 	$data['error'] = [
+		// 		'status'  => 'error',
+		// 		'message' => 'Usuario no encontrado'
+		// 	];
+		// }
+
+		// return $this->response->setJSON([
+		// 	'status' => 'success',
+		// 	'userIdEncrypted' => $encryptedId,
+		// 	$data
+		// ]);
+
+		$data['title'] = 'Editar Usuario TEST';
+		return view('users/edit', $data);
+	}
+
+	public function cargaMasiva(){
+		$data['title'] = 'Carga Masiva Usuarios';
+		return view('users/masiveload', $data);
+	}
+
+	public function find($encryptedId){
+		
+		try {
+			$userId = $this->encrypter->decrypt(hex2bin($encryptedId));
+			$usuario = $this->userModel->getUsuarioPorId($userId);
+			if ($usuario) {
+				// Devuelve un JSON con status 200
+				return $this->response->setJSON([
+					'status' => 'success',
+					'userIdEncrypted' => $encryptedId,
+					'data'   => $usuario
+				]);
+			} else {
+				// Devuelve un JSON de error si no se encuentra
+				return $this->response->setJSON([
+					'status'  => 'error',
+					'message' => 'Usuario no encontrado'
+				])->setStatusCode(404);
+			}
+		} catch (\Exception $e) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message'=> 'ID inválido'
+			])->setStatusCode(400);
+		}
+	}
+
+	public function store(){
+		if ($this->request->is('post')) {
+			$data = $this->request->getPost();  // O usa validation primero
+			// $result = $this->userModel->insertUser($data);
+			return $this->response->setJSON(['success' => false, 'message' => 'Error al crear', 'registros' => $data]);
+			// if ($result) {
+			// 	return $this->response->setJSON(['success' => true, 'message' => 'Usuario creado']);
+			// }
+		}
+		// return $this->response->setJSON(['success' => false, 'message' => 'Error al crear']);
+	}
+
+	public function update($encryptedId){
+
+		try {
+			$userId = $this->encrypter->decrypt(hex2bin($encryptedId));
+			
+			$data = $this->request->getPost();
+			if ($this->userModel->updateUser($userId, $data)) {
+				return $this->response->setJSON([
+					'status' => 'success',
+					'message' => 'Usuario actualizado correctamente'
+				]);
+			} else {
+				return $this->response->setJSON([
+					'status' => 'error',
+					'message' => 'Error al actualizar el usuario'
+				]);
+			}
+		} catch (\Exception $e) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message'=> 'ID inválido'
+			])->setStatusCode(400);
+		}
+	}
 }

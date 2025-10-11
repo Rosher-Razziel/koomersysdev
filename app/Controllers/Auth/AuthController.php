@@ -21,7 +21,7 @@ class AuthController extends BaseController
 
         $userModel = new UserModel();
         $user = $userModel
-            ->select('TAUSUARIO.*, TAROL.FCNOMBREROL, TASUCURSAL.FCNOMBRESUCURSAL, TAMARCA.FIMARCAID')
+            ->select('TAUSUARIO.*, TAROL.FIROLID, TAROL.FCNOMBREROL, TASUCURSAL.FCNOMBRESUCURSAL, TAMARCA.FIMARCAID')
             ->join('TAROL', 'TAROL.FIROLID = TAUSUARIO.FIROLID')
             ->join('TASUCURSAL', 'TASUCURSAL.FISUCURSALID = TAUSUARIO.FISUCURSALID')
             ->join('TAMARCA', 'TAMARCA.FIMARCAID = TASUCURSAL.FIMARCAID', 'LEFT')

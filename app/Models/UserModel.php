@@ -25,18 +25,33 @@ class UserModel extends Model
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'FDFECHAALTA';
     protected $updatedField  = 'FDFECHAACTUALIZACION';
-    // protected $deletedField  = 'deleted_at';
 
     // Validation
     protected $validationRules      = [
-        'username' => 'required|min_length[3]|max_length[50]|is_unique[users.username,id,{id}]',
-        'email'    => 'required|valid_email|max_length[120]|is_unique[users.email,id,{id}]',
-        'password' => 'permit_empty|min_length[8]',
-        'role_id'  => 'required|is_natural_no_zero',
+        'FCNOMBREUSUARIO' => 'required|min_length[3]|max_length[50]|is_unique[TAUSUARIO.FCNOMBREUSUARIO,FIUSUARIOID,{id}]',
+        'FCEMAIL'    => 'required|valid_email|max_length[120]|is_unique[TAUSUARIO.FCEMAIL,FIUSUARIOID,{id}]',
+        'FCCLAVE' => 'permit_empty|min_length[8]',
+        'FIROLID'  => 'required|is_natural_no_zero',
+        'FISUCURSALID' => 'required|is_natural_no_zero',
     ];
     protected $validationMessages   = [
-        'password' => [
+        'FCCLAVE' => [
             'min_length' => 'La contraseña debe tener al menos 8 caracteres.'
+        ],
+        'FIROLID' => [
+            'is_natural_no_zero' => 'El rol debe ser un número entero positivo.'
+        ],
+        'FISUCURSALID' => [
+            'is_natural_no_zero' => 'La sucursal debe ser un número entero positivo.'
+        ],
+        'FCNOMBREUSUARIO' => [
+            'required' => 'El nombre de usuario es requerido.'
+        ],
+        'FCEMAIL' => [
+            'required' => 'El email es requerido.',
+            'valid_email' => 'El email no es válido.',
+            'max_length' => 'El email no puede exceder los 120 caracteres.',
+            'is_unique' => 'El email ya está registrado.'
         ],
     ];
     protected $skipValidation       = false;
@@ -54,12 +69,11 @@ class UserModel extends Model
     protected $afterDelete    = [];
 
     protected function hashPassword(array $data){
-        if (! empty($data['data']['password'])) {
-            $data['data']['password_hash'] = password_hash($data['data']['password'], PASSWORD_ARGON2ID);
+        if (! empty($data['data']['FCCLAVE'])) {
+            $data['data']['FCCLAVE'] = password_hash($data['data']['FCCLAVE'], PASSWORD_DEFAULT);
         }
         return $data;
-    }
-    
+    }    
     public function findAllUsers(){
         return $this->select("
             TAUSUARIO.FIUSUARIOID,
@@ -82,7 +96,6 @@ class UserModel extends Model
 
     public function getUsuarioPorId($userId){
         return $this->select("
-            TAUSUARIO.FIUSUARIOID,
             TAUSUARIO.FCNOMBREUSUARIO,
             TAUSUARIO.FCAPELLIDOPATERNO,
             TAUSUARIO.FCAPELLIDOMATERNO,
@@ -103,8 +116,31 @@ class UserModel extends Model
         ->asArray()
         ->first();
     }
-    
+
+    public function insertUser(array $data){
+        $usuario = [];
+
+        // Asignar campos obligatorios
+        $usuario['FCNOMBREUSUARIO']   = $data['FCNOMBREUSUARIO'] ?? 'SinNombre';
+        $usuario['FCAPELLIDOPATERNO'] = $data['FCAPELLIDOPATERNO'] ?? 'SinApellido';
+        $usuario['FCAPELLIDOMATERNO'] = $data['FCAPELLIDOMATERNO'] ?? 'SinApellido';
+        $usuario['FCEMAIL']           = $data['FCEMAIL'];
+        $usuario['FCCLAVE']           = $data['FCCLAVE'];
+
+        // Asignar campos opcionales con valores por defecto
+        $usuario['FIROLID']           = $data['FIROLID'] ?? 2; // rol genérico
+        $usuario['FISUCURSALID']      = $data['FISUCURSALID'] ?? 1; // sucursal principal
+        $usuario['FIESTATUS']         = $data['FIESTATUS'] ?? 1; // activo por defecto
+        $usuario['FIEMAILVERIFICADO'] = $data['FIEMAILVERIFICADO'] ?? 0;
+
+        // Campos de token (si aplica)
+        $usuario['FCRECORDARTOKEN']     = $data['FCRECORDARTOKEN'] ?? null;
+        $usuario['FDRECORDARTOKENFIN']  = $data['FDRECORDARTOKENFIN'] ?? null;
+
+        return $this->insert($usuario);
+    }
+
     public function updateUsuarioPorId($userId, $data){
         return $this->update($userId, $data);
-    }
+    }    
 }

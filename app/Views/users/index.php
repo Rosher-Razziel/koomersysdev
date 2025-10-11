@@ -1,207 +1,270 @@
-<?= view('layout/head'); ?>
+<?= $this->extend('layout/main') ?>
 
-<body class="app">
-  <header class="app-header fixed-top">
-    <div class="app-header-inner">
-      <div class="container-fluid py-2">
-        <?= view('layout/nav-top'); ?>
-      </div>
-      <div id="app-sidepanel" class="app-sidepanel">
-        <?= view('layout/nav'); ?>
-      </div>
+<?= $this->section('content') ?>
+<div class="container-xl">
+  <!-- Botones Usuarios -->
+  <div class="row g-3 mb-3 align-items-center justify-content-between">
+    <!-- Título Usuarios -->
+    <div class="col-auto">
+      <h1 class="app-page-title mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" fill="currentColor"
+          class="bi bi-shop-window" viewBox="0 0 16 16">
+          <path
+            d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5" />
+        </svg>
+        Lista de usuarios
+      </h1>
     </div>
-  </header>
-
-  <div class="app-wrapper">
-    <div class="app-content pt-3 p-md-3 p-lg-4">
-      <div class="container-xl">
-        <div class="row g-3 mb-4 align-items-center justify-content-between">
+    <!-- Botones Acciones -->
+    <div class="col-auto">
+      <div class="page-utilities">
+        <div class="row g-2 justify-content-center justify-content-md-end align-items-center">
           <div class="col-auto">
-            <h1 class="app-page-title mb-0">Usuarios</h1>
+            <button class="btn app-btn-secondary shadow" id="btnAddUser" title="Agregar Usuario" data-bs-toggle="modal"
+              data-bs-target="#addUserModal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+              </svg>
+              Agregar Usuario
+            </button>
           </div>
           <div class="col-auto">
-            <div class="page-utilities">
-              <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-                <div class="col-auto">
-                  <a class="btn app-btn-secondary" href="#">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd"
-                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                      <path fill-rule="evenodd"
-                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                    </svg>
-                    Descargar CSV
-                  </a>
-                  <a class="btn app-btn-secondary" href="<?= base_url('users/create/carga-masiva') ?>">
-                    <svg width="1.5em" height="1.5em" viewBox="0 0 640 640" class="bi bi-download me-1"
-                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M176 544C96.5 544 32 479.5 32 400C32 336.6 73 282.8 129.9 263.5C128.6 255.8 128 248 128 240C128 160.5 192.5 96 272 96C327.4 96 375.5 127.3 399.6 173.1C413.8 164.8 430.4 160 448 160C501 160 544 203 544 256C544 271.7 540.2 286.6 533.5 299.7C577.5 320 608 364.4 608 416C608 486.7 550.7 544 480 544L176 544zM337 255C327.6 245.6 312.4 245.6 303.1 255L231.1 327C221.7 336.4 221.7 351.6 231.1 360.9C240.5 370.2 255.7 370.3 265 360.9L296 329.9L296 432C296 445.3 306.7 456 320 456C333.3 456 344 445.3 344 432L344 329.9L375 360.9C384.4 370.3 399.6 370.3 408.9 360.9C418.2 351.5 418.3 336.3 408.9 327L336.9 255z" />
-                    </svg>
-                    Carga Masiva
-                  </a>
-                  <a class="btn app-btn-secondary" href="<?= base_url('users/create/permisos') ?>">
-                    <svg width="1.5em" height="1.5em" viewBox="0 0 640 640" class="bi bi-download me-1"
-                      fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M256 312C322.3 312 376 258.3 376 192C376 125.7 322.3 72 256 72C189.7 72 136 125.7 136 192C136 258.3 189.7 312 256 312zM226.3 368C127.8 368 48 447.8 48 546.3C48 562.7 61.3 576 77.7 576L329.2 576C293 533.4 272 478.5 272 420.4L272 389.3C272 382 273 374.8 274.9 368L226.3 368zM477.3 552.5L464 558.8L464 370.7L560 402.7L560 422.3C560 478.1 527.8 528.8 477.3 552.6zM453.9 323.5L341.9 360.8C328.8 365.2 320 377.4 320 391.2L320 422.3C320 496.7 363 564.4 430.2 596L448.7 604.7C453.5 606.9 458.7 608.1 463.9 608.1C469.1 608.1 474.4 606.9 479.1 604.7L497.6 596C565 564.3 608 496.6 608 422.2L608 391.1C608 377.3 599.2 365.1 586.1 360.7L474.1 323.4C467.5 321.2 460.4 321.2 453.9 323.4z"/></svg>
-                    Permisos
-                  </a>
-                  <a class="btn app-btn-secondary" href="<?= base_url('users/create'); ?>">
-                    Agregar
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row g-4 mb-4">
-          <div class="container mt-4">
-            <table id="usuariosTable" class="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th class="text-center">Marca</th>
-                  <th class="text-center">Nombre</th>
-                  <th class="text-center">Correo</th>
-                  <th class="text-center">Rol</th>
-                  <th class="text-center">Sucursal</th>
-                  <th class="text-center">Estatus</th>
-                  <th class="text-center">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php if (!empty($usuarios)): ?>
-                <?php foreach ($usuarios as $usuario): ?>
-                <tr>
-                  <td class="cell"><?= $usuario['FCNOMBRE']; ?></td>
-                  <td class="cell">
-                    <span class="truncate">
-                      <?= $usuario['FCNOMBREUSUARIO'] . ' ' . $usuario['FCAPELLIDOPATERNO'] . ' ' . $usuario['FCAPELLIDOMATERNO']; ?>
-                    </span>
-                  </td>
-                  <td class="cell"><?= $usuario['FCEMAIL']; ?></td>
-                  <td class="cell"><?= $usuario['FCNOMBREROL']; ?></td>
-                  <td class="cell"><?= $usuario['FCNOMBRESUCURSAL']; ?></td>
-                  <td class="cell text-center">
-                    <span
-                      class="badge <?php echo $usuario['FIESTATUS'] == 0 ? 'bg-warning' : 'bg-success'; ?>">
-                      <?php echo $usuario['FIESTATUS'] == 0 ? 'Inactivo' : 'Activo'; ?>
-                    </span>
-                  </td>
-                  <td class="cell text-center">
-                    <?php if ($usuario['FIROLID'] == 1): ?>
-                      <span class="badge bg-info"> Administrador </span>
-                    <?php else: ?>
-                      <?php 
-                        $encrypter = \Config\Services::encrypter();
-                        $encryptedId = bin2hex($encrypter->encrypt($usuario['FIUSUARIOID']));  
-                      ?>
-                    <button type="button" id="btn-detalles" data-id="<?= $encryptedId;?>" class="btn-sm app-btn-secondary px-2 btn-detalles"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-                       Detalles
-                    </button>
-                    <?php endif; ?>
-                  </td>
-                </tr>
-                <?php endforeach; ?>
-                <?php endif; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <?= view('layout/footer'); ?>
-  </div>
-  <!-- canva detalle ususarios -->
-  <div class="offcanvas offcanvas-end"
-    style="width: 500px; transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;" tabindex="-1"
-    id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title d-flex align-items-center gap-2 text-primary" id="offcanvasUserLabel">
-        <i class="bi bi-person-circle fs-3 text-primary fa-solid fa-user"></i>
-        Detalles del Usuario
-      </h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="nav nav-tabs" id="userTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="detalles-tab" data-bs-toggle="tab" data-bs-target="#detalles"
-            type="button" role="tab">Detalles</button>
-        </li>
-        <!-- <li class="nav-item" role="presentation">
-          <button class="nav-link" id="formulario-tab" data-bs-toggle="tab" data-bs-target="#formulario" type="button"
-            role="tab">Editar</button>
-        </li> -->
-      </ul>
-      <!-- TAB DETALLES -->
-      <div class="tab-content mt-3" id="userTabContent">
-        <div class="tab-pane fade show active" id="detalles" role="tabpanel">
-          <ul class="list-group">
-            <li class="list-group-item"><strong>Nombre:</strong> <span id="nombre"></span> </li>
-            <li class="list-group-item"><strong>Apellido Paterno:</strong> <span id="appat"></span></li>
-            <li class="list-group-item"><strong>Apellido Materno:</strong> <span id="apmat"></span></li>
-            <li class="list-group-item"><strong>Correo:</strong> <span id="email"></span></li>
-            <li class="list-group-item"><strong>Estatus:</strong> <span id="estatus"></span></li>
-            <li class="list-group-item"><strong>Fecha Alta:</strong> <span id="fechaalta"></span></li>
-            <li class="list-group-item"><strong>Última Actualización:</strong> <span id="fechaactualizacion"></span></li>
-          </ul>
-          <div class="d-flex gap-2 pt-2 justify-content-center">
-            <button type="submit" id="btn-suspender" class="btn btn-warning w-25 text-white">
-              <i class="bi bi-save"></i> Suspender
+            <button class="btn app-btn-secondary shadow" id="btnDownload" title="Descargar">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                <path fill-rule="evenodd"
+                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+              </svg>
+              Descargar Usuarios
             </button>
-            <button type="button" id="btn-elininar" class="btn btn-danger w-25 text-white">
-              <i class="bi bi-trash"></i> Eliminar
+          </div>
+          <div class="col-auto">
+            <button class="btn app-btn-secondary shadow" href="<?= base_url('users/create') ?>" id="btnUpload"
+              title="Cargar Masiva" data-bs-toggle="modal" data-bs-target="#uploadUsersModal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
+                viewBox="0 0 16 16">
+                <path
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                <path
+                  d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+              </svg>
+              Cargar Masiva
             </button>
-            <a type="button" id="btn-editar" class="btn btn-info w-25 text-white">
-              <i class="bi bi-trash"></i> Editar
-            </a>
           </div>
         </div>
-        <!-- TAB FORMULARIO -->
-        <!-- <div class="tab-pane fade" id="formulario" role="tabpanel">
-          <form>
-            <div class="row">
-              <div class="mb-3 col-6">
-                <label class="form-label">Nombre</label>
-                <input type="text" class="form-control" value="Juan">
-              </div>
-              <div class="mb-3 col-6">
-                <label class="form-label">Apellido Paterno</label>
-                <input type="text" class="form-control" value="Pérez">
-              </div>
-              <div class="mb-3 col-6">
-                <label class="form-label">Apellido Materno</label>
-                <input type="text" class="form-control" value="López">
-              </div>
-              <div class="mb-3 col-6">
-                <label class="form-label">Correo</label>
-                <input type="email" class="form-control" value="juan.perez@example.com">
-              </div>
-              <div class="mb-3 col-6">
-                <label class="form-label">Clvae</label>
-                <input type="email" class="form-control" value="juan.perez@example.com">
-              </div>
-              <div class="mb-3 col-6">
-                <label class="form-label">Estatus</label>
-                <select class="form-select">
-                  <option selected>Activo</option>
-                  <option>Inactivo</option>
-                </select>
-              </div>
-            </div>
-            <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-success w-25 text-white">
-                <i class="bi bi-save"></i> Editar
-              </button>
-            </div>
-          </form>
-        </div> -->
       </div>
     </div>
   </div>
-  <!--//app-wrapper-->
-  <?= view('layout/scripts'); ?>
-  <script src="<?= base_url('assets/js/scripts/users/index.js'); ?>"></script>
-</body>
+  <!-- Tabla de Usuarios -->
+  <div class="row g-3">
+    <div class="col-lg-12">
+      <div class="app-card shadow-sm p-2 table-responsive">
+        <table class="table table-bordered table-hover align-middle table-sm" id="tablaUsuarios">
+          <thead class="table-dark">
+            <tr>
+              <th class="text-center">NOMBRE COMPLETO</th>
+              <th class="text-center">EMAIL</th>
+              <th class="text-center">ROL</th>
+              <th class="text-center">SUCURSAL</th>
+              <th class="text-center">ESTATUS</th>
+              <th class="text-center">EMAIL VERIFICADO</th>
+              <th class="text-center">ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyUsuarios">
+            <tr>
+              <td class="text-center">Juan Pérez Beltran</td>
+              <td class="text-center">juan.perez@example.com</td>
+              <td class="text-center">Administrador</td>
+              <td class="text-center">Sucursal 1</td>
+              <td class="text-center"><span class="badge bg-success">Activo</span></td>
+              <td class="text-center"><span class="badge bg-success">Verificado</span></td>
+              <td class="text-center">
+                <button class="btn btn-primary btn-sm text-white" id="btnEditUser" title="Editar Usuario"
+                  data-bs-toggle="modal" data-bs-target="#addUserModal">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path
+                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                  </svg>
+                </button>
+                <button class="btn btn-danger btn-sm text-white" id="btnDeleteUser" title="Eliminar Usuario">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-trash3" viewBox="0 0 16 16">
+                    <path
+                      d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">Rogelio Espinosa Reyes</td>
+              <td class="text-center">maria.garcia@example.com</td>
+              <td class="text-center">Usuario</td>
+              <td class="text-center">Sucursal 2</td>
+              <td class="text-center"><span class="badge bg-danger">Inactivo</span></td>
+              <td class="text-center"><span class="badge bg-warning">Por Verificar</span></td>
+              <td class="text-center">
+                <button class="btn btn-primary btn-sm text-white" id="btnEditUser" title="Editar Usuario"
+                  data-bs-toggle="modal" data-bs-target="#addUserModal">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path
+                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                  </svg>
+                </button>
+                <button class="btn btn-danger btn-sm text-white" id="btnDeleteUser" title="Eliminar Usuario">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-trash3" viewBox="0 0 16 16">
+                    <path
+                      d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-</html>
+<!-- Modal Formulario -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary">
+        <h1 class="modal-title fs-5 text-white" id="addUserModalLabel">Agregar Usuario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="settings-form w-100" id="frmAddUser">
+          <div class="row g-2">
+            <div class="col-12 col-md-4">
+              <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+              <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required
+                placeholder="Ingrese nombre de usuario">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required placeholder="Ingrese email">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" name="password" required
+                placeholder="Ingrese contraseña">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
+                placeholder="Confirme contraseña">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
+                placeholder="Confirme contraseña">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
+                placeholder="Confirme contraseña">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
+                placeholder="Confirme contraseña">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
+                placeholder="Confirme contraseña">
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
+                placeholder="Confirme contraseña">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary text-white">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Carga Masiva -->
+<div class="modal fade" id="uploadUsersModal" tabindex="-1" aria-labelledby="uploadUsersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary">
+        <h1 class="modal-title fs-5 text-white" id="uploadUsersModalLabel">Carga Masiva de Usuarios</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-info" role="alert">
+          Selecciona un archivo en formato <strong>.xlsx</strong> o <strong>.csv</strong> con los datos de los
+          usuarios o
+          <a href="<?= base_url('assets/plantillas/carga_masiva_usuario.xlsx') ?>" class="alert-link">Descarga
+            plantilla</a>.
+        </div>
+        <form class="settings-form w-100" id="frmAddUser">
+          <div class="row g-2">
+            <div class="col-12 col-md-4">
+              <label for="role" class="form-label">Selecciona Marca</label>
+              <select class="form-select" id="role" name="role" required>
+                <option value="" disabled selected>Seleccione una marca</option>
+                <option value="1">Marca 1</option>
+                <option value="2">Marca 2</option>
+                <option value="3">Marca 3</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-8">
+              <label for="file" class="form-label">Subir Archivo</label>
+              <div class="input-group">
+                <!-- Botón "Buscar" -->
+                <label class="input-group-text btn btn-primary text-white" for="fileInput">
+                  <i class="bi bi-search"></i> Buscar
+                </label>
+                <!-- Input de archivo (oculto para que no se vea feo) -->
+                <input class="form-control d-none" type="file" id="fileInput" name="fileInput" accept=".xlsx,.xls">
+                <!-- Input de solo lectura para mostrar nombre -->
+                <input type="text" class="form-control" id="fileName" placeholder="Ningún archivo seleccionado" readonly
+                  disabled>
+                <!-- Botón eliminar -->
+                <button class="btn btn-outline-danger text-white bg-danger d-none" type="button" id="clearFileBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-trash3" viewBox="0 0 16 16">
+                    <path
+                      d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary text-white">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<script src="<?= base_url('assets/js/scripts/users/users.js') ?>"></script>
+<?= $this->endSection() ?>
