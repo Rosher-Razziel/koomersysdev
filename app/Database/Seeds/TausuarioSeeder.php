@@ -12,7 +12,7 @@ class TausuarioSeeder extends Seeder{
 				'FCAPELLIDOPATERNO' => 'Espinosa',
 				'FCAPELLIDOMATERNO' => 'Reyes',
 				'FCEMAIL' => 'respinosa@koomersys.com',
-				'FCCLAVE' => '$2y$10$XKbmag11EnmfwV3nq2e6eukIQF.atG0Hj6gvSOkfpDI4nOHmeVpea',
+				'FCCLAVE' => '$2y$10$wqS48BYoZcttHejgLvv8OuWvEo6IxBFEhSWhb7rQu7GxQTc0AF2LW',
 				'FIROLID' => 1,
 				'FISUCURSALID' => 1,
 				'FIESTATUS' => 1,
@@ -130,7 +130,7 @@ class TausuarioSeeder extends Seeder{
 				[
 					'FCNOMBREUSUARIO' => 'Marbella',
 					'FCAPELLIDOPATERNO' => 'Ruiz',
-					'FCAPELLIDOMATERNO' => '-',
+					'FCAPELLIDOMATERNO' => 'Sin apellido',
 					'FCEMAIL' => 'mruiz@koomersys.com',
 					'FCCLAVE' => '$2y$10$7K/3Iu87eROUxdPSKqbwGOj5mK8.dhOCYBk8bMdQp43J9xw0g90V.',
 					'FIROLID' => 1,
@@ -145,7 +145,7 @@ class TausuarioSeeder extends Seeder{
 				[
 					'FCNOMBREUSUARIO' => 'Jhonathan',
 					'FCAPELLIDOPATERNO' => 'Vega',
-					'FCAPELLIDOMATERNO' => '-',
+					'FCAPELLIDOMATERNO' => 'Perez',
 					'FCEMAIL' => 'jvega@koomersys.com',
 					'FCCLAVE' => '$2y$10$xaREN0NbLTFDaUqjOr04qeUpYWaw3i5SVaE.q29DsFRO79URogkte',
 					'FIROLID' => 1,
@@ -160,7 +160,7 @@ class TausuarioSeeder extends Seeder{
 				[
 					'FCNOMBREUSUARIO' => 'Maria Fernanda',
 					'FCAPELLIDOPATERNO' => 'Arredondo',
-					'FCAPELLIDOMATERNO' => '-',
+					'FCAPELLIDOMATERNO' => 'Sin apellido',
 					'FCEMAIL' => 'mfarredondo@koomersys.com',
 					'FCCLAVE' => '$2y$10$0mapH24chPbGOWZ2do4/lOnYFFoBZpL0A/miKo0jM5wvNx/iOuT66',
 					'FIROLID' => 1,
@@ -205,7 +205,7 @@ class TausuarioSeeder extends Seeder{
 				[
 					'FCNOMBREUSUARIO' => 'Arlett',
 					'FCAPELLIDOPATERNO' => 'Lleraldin',
-					'FCAPELLIDOMATERNO' => '-',
+					'FCAPELLIDOMATERNO' => 'Sin apellido',
 					'FCEMAIL' => 'asinapeliido@koomersys.com',
 					'FCCLAVE' => '$2y$10$cBudDfqWc.dgvx6rEnK9auflA6vWTey6D45FwD1p2j3xBj4OfZYbm',
 					'FIROLID' => 1,

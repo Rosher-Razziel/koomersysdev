@@ -72,65 +72,11 @@
               <th class="text-center">ROL</th>
               <th class="text-center">SUCURSAL</th>
               <th class="text-center">ESTATUS</th>
-              <th class="text-center">EMAIL VERIFICADO</th>
+              <th class="text-center">VERIFICADO</th>
               <th class="text-center">ACCIONES</th>
             </tr>
           </thead>
-          <tbody id="tbodyUsuarios">
-            <tr>
-              <td class="text-center">Juan Pérez Beltran</td>
-              <td class="text-center">juan.perez@example.com</td>
-              <td class="text-center">Administrador</td>
-              <td class="text-center">Sucursal 1</td>
-              <td class="text-center"><span class="badge bg-success">Activo</span></td>
-              <td class="text-center"><span class="badge bg-success">Verificado</span></td>
-              <td class="text-center">
-                <button class="btn btn-primary btn-sm text-white" id="btnEditUser" title="Editar Usuario"
-                  data-bs-toggle="modal" data-bs-target="#addUserModal">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pencil-square" viewBox="0 0 16 16">
-                    <path
-                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                    <path fill-rule="evenodd"
-                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                  </svg>
-                </button>
-                <button class="btn btn-danger btn-sm text-white" id="btnDeleteUser" title="Eliminar Usuario">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-trash3" viewBox="0 0 16 16">
-                    <path
-                      d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center">Rogelio Espinosa Reyes</td>
-              <td class="text-center">maria.garcia@example.com</td>
-              <td class="text-center">Usuario</td>
-              <td class="text-center">Sucursal 2</td>
-              <td class="text-center"><span class="badge bg-danger">Inactivo</span></td>
-              <td class="text-center"><span class="badge bg-warning">Por Verificar</span></td>
-              <td class="text-center">
-                <button class="btn btn-primary btn-sm text-white" id="btnEditUser" title="Editar Usuario"
-                  data-bs-toggle="modal" data-bs-target="#addUserModal">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pencil-square" viewBox="0 0 16 16">
-                    <path
-                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                    <path fill-rule="evenodd"
-                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                  </svg>
-                </button>
-                <button class="btn btn-danger btn-sm text-white" id="btnDeleteUser" title="Eliminar Usuario">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-trash3" viewBox="0 0 16 16">
-                    <path
-                      d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                  </svg>
-                </button>
-              </td>
-            </tr>
+          <tbody>
           </tbody>
         </table>
       </div>
@@ -141,65 +87,100 @@
 <!-- Modal Formulario -->
 <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
-    <div class="modal-content">
+    <div class="modal-content position-relative">
+      <!-- Loader -->
+      <div id="loaderModalUser"
+        class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white bg-opacity-75 d-none"
+        style="z-index: 1055;">
+        <div class="spinner-border text-primary" role="status" style="width: 2.5rem; height: 2.5rem;">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
       <div class="modal-header bg-secondary">
         <h1 class="modal-title fs-5 text-white" id="addUserModalLabel">Agregar Usuario</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
-        <form class="settings-form w-100" id="frmAddUser">
+        <input type="hidden" id="userIdEncrypted" name="userIdEncrypted">
+        <form class="settings-form w-100" id="addUserForm">
+          <input type="hidden" id="usuarioId" name="usuarioId">
           <div class="row g-2">
-            <div class="col-12 col-md-4">
-              <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+              <label for="nombreUsuario" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required
                 placeholder="Ingrese nombre de usuario">
             </div>
-            <div class="col-12 col-md-4">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" required placeholder="Ingrese email">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+              <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+              <input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno" required
+                placeholder="Ingrese apellido paterno">
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+              <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+              <input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno" required
+                placeholder="Ingrese apellido materno">
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+              <label for="email" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="email" name="email" required
+                placeholder="Ingrese correo electrónico">
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
               <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password" name="password" required
-                placeholder="Ingrese contraseña">
+              <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="••••••••">
+                <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="left"
+                  title="La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un símbolo especial.">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path
+                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                  </svg>
+                </span>
+              </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
               <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
               <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
-                placeholder="Confirme contraseña">
+                placeholder="••••••••">
             </div>
-            <div class="col-12 col-md-4">
-              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
-                placeholder="Confirme contraseña">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+              <label for="rol" class="form-label">Rol</label>
+              <select class="form-select" id="rol" name="rol" required>
+                <option value="" disabled selected>Seleccione un rol</option>
+                <?php foreach ($roles as $rol): ?>
+                <option value="<?= $rol['FIROLID'] ?>"><?= $rol['FCNOMBREROL'] ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
-            <div class="col-12 col-md-4">
-              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
-                placeholder="Confirme contraseña">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+              <label for="confirmPassword" class="form-label">Sucursal</label>
+              <select class="form-select" id="sucursal" name="sucursal" required>
+                <option value="" disabled selected>Seleccione una sucursal</option>
+                <?php foreach ($sucursales as $sucursal): ?>
+                <option value="<?= $sucursal['FISUCURSALID'] ?>"><?= $sucursal['FCNOMBRESUCURSAL'] ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
-            <div class="col-12 col-md-4">
-              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
-                placeholder="Confirme contraseña">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+              <label for="estatus" class="form-label d-block">Estatus</label>
+              <div class="form-check form-switch align-items-center d-flex">
+                <input class="form-check-input" type="checkbox" id="estatus" name="estatus" role="switch"
+                  style="height: 30px; width: 60px;">
+                <label class="form-check-label ms-2" for="estatus" id="estatusLabel">Usuario Activo</label>
+              </div>
             </div>
-            <div class="col-12 col-md-4">
-              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
-                placeholder="Confirme contraseña">
-            </div>
-            <div class="col-12 col-md-4">
-              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required
-                placeholder="Confirme contraseña">
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary text-white" id="btnAgregarUsuario">Guardar cambios</button>
             </div>
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary text-white">Guardar cambios</button>
-      </div>
+
     </div>
   </div>
 </div>

@@ -20,6 +20,11 @@ $routes->group('', ['filter' => 'authGuard'], static function($routes){
     // GRUPO DE URL USUARIO
     $routes->group('users', static function($routes){
         $routes->get('/', 'Users\UserController::index');
+        $routes->get('listarUsuarios', 'Users\UserController::listarUsuarios');
+        $routes->get('edit/(:any)', 'Users\UserController::edit/$1');
+        $routes->post('create', 'Users\UserController::create');
+        $routes->post('update', 'Users\UserController::update');
+        $routes->delete('eliminar/(:any)', 'Users\UserController::delete/$1');
     });
 
     // GRUPO DE URL DASHBOARD

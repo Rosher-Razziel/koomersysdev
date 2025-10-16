@@ -107,7 +107,9 @@ const Toast = Swal.mixin({
 
 // LOADER
 $(window).on("load", function () {
-	$('#loader').hide();
+	// setInterval(() => {
+		$('#loader').hide();
+	// }, 50);
 });
 
 // EVITAR RECARGAR PAGINA SI YA ME ENCUENTRO AHI
